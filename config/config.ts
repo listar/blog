@@ -3,7 +3,6 @@ import routes from './routes'
 import proxy from './proxy'
 
 const { UMI_ENV } = process.env
-console.log(routes);
 
 export default defineConfig({
   routes: routes.routes,

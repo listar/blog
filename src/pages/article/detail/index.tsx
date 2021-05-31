@@ -1,21 +1,59 @@
-export default function ArticleInfo(){
+import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm';
+import DetailStyle  from './style'
 
+export default function ArticleInfo() {
+  const markdown = `A paragraph with *emphasis* and **strong importance**.
+
+> A block quote with ~strikethrough~ and a URL: https://reactjs.org.
+
+* Lists
+* [ ] todo
+* [x] done
+
+A table:
+
+| a | b |
+| - | - |
+| 1 | 2 |
+
+
+- 列表内容
++ 列表内容
+* 列表内容
+
+注意：- + * 跟内容之间都要有一个空格
+
+
+  > 这是引用的内容
+  >> 这是引用的内容
+  >>>>>>>>>> 这是引用的内容
+
+\`\`\`javascript
+ console.log('hello world')
+\`\`\`
+
+`;
 
   return (
     <>
-      <div className="title">文章详情</div>
-      <div className="detail">
-        1. OOP历史 预测未来最好的方法就是创造它。 ———— 艾伦·凯（Alan
-        Kay），最早提出面向对象概念的人 面向对象的英文是 Object
-        Oriented，直译为“以对象为中心”。 下面简述一下OOP出现的历史：
-        计算机只可以解释用二进制数编写的机器语言，为了让计算机执行预期的工作，最终必须有使用机器语言编写的命令群
-        为了改善这种低效的编程，汇编语言就应运而生了，汇编语言将无含义的机器语言用人类容易理解的符号表示出来
-        随后，用更贴近人类的表达形式来编写程序的高级语言被发明出来，从面向计算机转变成面向开发者
-        软件需求越来越复杂，提出了结构化编程，提倡只使用循序、选择和重复这三种结构来表达逻辑，同时废弃
-        Goto；
-        为了方便维护程序，需要提高子程序的独立性，减少全局变量，一种是使用局部变量，一种是按值传递；出现了以结构化为基础的结构化编程语言，如C
-        结构化语言未解决的问题是：全局变量与可重复性差；OOP 打破了这个限制
-      </div>
+      <DetailStyle>
+        <div className="time-tags">
+          <div className="time">2021-05-31</div>
+          <div className="tags">
+            <div className="item">React</div>
+            <div className="item">Vue</div>
+            <div className="item">JavaScript</div>
+          </div>
+        </div>
+        <div className="title">文章详情</div>
+        <div className="detail">
+          <ReactMarkdown
+            remarkPlugins={[gfm]}
+            children={markdown}
+          ></ReactMarkdown>
+        </div>
+      </DetailStyle>
     </>
   );
 }

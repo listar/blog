@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { IndexStyleLayout } from './style';
 
 const IndexLayout: React.FC = (props) => {
-  const { children, history} = props;
-  const [showContent, setShowContent] = useState(false);
+  const { children, history, location} = props;
+  const [showContent, setShowContent] = useState(location.pathname === "/" ? false : true);
   const navArr: any = {
     index: {
       route: '/',

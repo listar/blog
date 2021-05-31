@@ -10,7 +10,7 @@ export default function AboutMe(){
           <div className="info">
             <p>熟悉前端Vue、React，后端PHP、Go的搬砖工</p>
             <p>一个被社会催熟的（天真、善良）大叔</p>
-            <p>喜欢自然、旅游、人性相关、动漫、主机游戏</p>
+            <p>喜欢自然、旅游、人性，心里相关、动漫、主机游戏</p>
           </div>
 
           <div className="title">关于博客</div>
@@ -23,9 +23,9 @@ export default function AboutMe(){
           <div className="title">联系方式</div>
           <div className="info">
             <div>
-              Github：{' '}
+              Github：
               <a href="https://github.com/listar" target="blank">
-                listar
+                star
               </a>
             </div>
             <div>Email： glovelistar@gmail.com</div>
