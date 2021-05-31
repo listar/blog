@@ -1,0 +1,113 @@
+body,
+div,
+span,
+header,
+footer,
+nav,
+section,
+aside,
+article,
+ul,
+dl,
+dt,
+dd,
+li,
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+i,
+b,
+textarea,
+button,
+input,
+select,
+figure,
+figcaption {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-style: normal;
+  text-decoration: none;
+  border: none;
+  font-weight: normal;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, "Microsoft JhengHei", "Microsoft YaHei", Tohoma, Arial;
+  box-sizing: border-box;
+  color: #595959;
+  font-size: 1em;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  &:hover {
+    outline: none;
+  }
+}
+
+ul,
+ol {
+  list-style: none;
+}
+a {
+  background-color: transparent;
+  color: #333;
+}
+a:active,
+a:hover {
+  outline: 0;
+}
+
+.shade {
+  background-color: rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  width: 100%;
+  pointer-events: none;
+  z-index: 9;
+  &.hide {
+    display: none;
+  }
+}
+
+
+
+@keyframes contentShow {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 30%
+  }
+}
+@keyframes contentHide {
+  from {
+    width: 30%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+
+@keyframes PopShow {
+  from {
+    bottom: -100%;
+  }
+  to {
+    bottom: 0;
+  }
+}
+@keyframes PopHide {
+  from {
+    bottom: 0;
+  }
+  to {
+    bottom: -100%;
+  }
+}
