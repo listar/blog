@@ -2,8 +2,8 @@ import { defineConfig } from 'umi'
 
 export default defineConfig({
   define: {
-    APIUrl: 'https://api.mwh.xyz',
-    SSOUrl: 'http://img.baipingheng.com',
-    TEST_MODE: false,
+    "APIUrl": 'http://www.qqfav.com:10070',
+    "SSOUrl": 'http://img.baipingheng.com',
+    "TEST_MODE": false,
   },
 })

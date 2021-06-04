@@ -1,6 +1,8 @@
 // require('./rem.js')
 
-console.log('global.tsx')
+// console.log('global.tsx')
+
+// console.log('hello', APIUrl);
 
 // import moment from 'moment'
 // import 'moment/locale/zh-cn'

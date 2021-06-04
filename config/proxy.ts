@@ -8,7 +8,7 @@
 export default {
   dev: {
     '/api/': {
-      target: 'http://localhost:4000',
+      target: 'http://www.qqfav.com:10070',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },

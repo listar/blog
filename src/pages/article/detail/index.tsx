@@ -83,7 +83,7 @@ useEffect(() => {
                 })}
             </div>
           </div>
-          <div className="title">文章详情</div>
+          <div className="title">{detail.Title}</div>
           <div className="detail markdown-body">
             <ReactMarkdown
               remarkPlugins={[gfm]}

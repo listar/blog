@@ -37,6 +37,11 @@ export default defineConfig({
   title: false,
   ignoreMomentLocale: true,
   proxy: proxy.dev,
+  define: {
+    APIUrl: "",
+    // APIUrl: 'http://www.qqfav.com:10070',
+    // APIUrl: 'http://localhost:10070',
+  },
   manifest: {
     basePath: '/',
   },

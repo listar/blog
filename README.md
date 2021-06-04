@@ -6,8 +6,8 @@
 - 后台管理前端使用的 Ant Design Pro
 - 后端服务使用的是 MorningGo
 
-+ 项目线上地址：  http://www.qqfav.com
-+ 后台管理地址：  http://qqfavadmin.qqfav.com
++ 项目线上地址：  http://www.qqfav.com/
++ 后台管理地址：  http://blogadmin.qqfav.com/
 
 ## 选择这三个的原因
 
