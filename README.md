@@ -1,15 +1,46 @@
-# umi project
+# qqfav.com
 
-## Getting Started
+## 项目介绍
 
-Install dependencies,
+- qqfav.com使用的 umi 创建的
+- 后台管理前端使用的 Ant Design Pro
+- 后端服务使用的是 MorningGo
 
-```bash
-$ yarn
-```
++ 项目线上地址：  http://www.qqfav.com
++ 后台管理地址：  http://qqfavadmin.qqfav.com
 
-Start the dev server,
+## 选择这三个的原因
 
-```bash
-$ yarn start
-```
+> 轻、快、扩展性强
+
+
+## 管理后台功能
+
+> 后台管理游客随便输入什么都可以登录，可以查看全部功能，但是没有 **新增、编辑**权限
+
+- [X] 游客、管理员登录
+- [X] 文章curd
+- [X] 诗词curd
+- [X] 名言curd
+- [ ] 人物传
+- [ ] 标签
+- [ ] 统计
+- [ ] 名词
+
+
+## TODO
+
+- [X] 文章
+- [X] 诗词
+- [X] 名言
+- [ ] 人物传
+- [ ] 名词
+- [ ] 标签
+- [ ] 细节补充、优化
+
+## other
+
+项目是为了快速搭建自己博客，所以使用了上面三个框架，能快速完成整个项目，完全算是站着巨人肩上。对项目感兴趣的小伙伴可以看看这三个框架，我自己本身所写的代码并不多，也不优。仅供新人参考！
+
+
+**如果你喜欢这个项目请给一个⭐，谢谢!**

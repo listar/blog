@@ -1,7 +1,10 @@
 import settingsConfig from '../../../config/defaultSettings';
 // import {Button} from 'antd'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IndexStyleLayout } from './style';
+import { sayingList } from '@/pages/services/saying';
+import { poetryList } from '@/pages/services/poetry';
+import {shuffle} from 'lodash'
 
 const IndexLayout: React.FC = (props) => {
   const { children, history, location} = props;
@@ -56,6 +59,24 @@ const IndexLayout: React.FC = (props) => {
     },
   };
 
+  const [sayingInfo, setSayingInfo] = useState({ Content: '' });
+  const [poetryInfo, setPoetryInfo] = useState({ Title: '', Content: '' });
+
+  useEffect(()=>{
+    sayingList({
+      pageIndex:1,
+      pageSize: 20
+    }).then(res=>{
+      setSayingInfo(shuffle(res.data.result)[0]);
+    })
+    poetryList({
+      pageIndex:1,
+      pageSize: 20
+    }).then(res=>{
+      setPoetryInfo(shuffle(res.data.result)[0]);
+    })
+  }, [])
+
   return (
     <IndexStyleLayout>
       <div
@@ -64,26 +85,20 @@ const IndexLayout: React.FC = (props) => {
       >
         <div className="index-main">
           <div className="poetry">
-            <div className="title">水调歌头</div>
-            <div className="content">
-              <p>丙辰中秋，欢饮达旦，大醉，作此篇，兼怀子由。</p>
-              <p>
-                明月几时有，把酒问青天。不知天上宫阙，今夕是何年。我欲乘风归去，又恐琼楼玉宇，高处不胜寒。起舞弄清影，何似在人间。
-              </p>
-              <p>
-                转朱阁，低绮户，照无眠。不应有恨，何事长向别时圆？人有悲欢离合，月有阴晴圆缺，此事古难全。但愿人长久，千里共婵娟。
-              </p>
-            </div>
+            <div className="title">{poetryInfo.Title}</div>
+            <div className="content">{poetryInfo.Content}</div>
           </div>
           <div className="nav-box">
-            {Object.keys(navArr).map((item:any) => {
+            {Object.keys(navArr).map((item: any) => {
               return (
-                <a key={item} onClick={navArr[item]['action']}>{navArr[item]['name']}</a>
+                <a key={item} onClick={navArr[item]['action']}>
+                  {navArr[item]['name']}
+                </a>
               );
             })}
           </div>
 
-          <div className="jitang">问世间情为何物，直教生死相许。</div>
+          <div className="jitang">{sayingInfo.Content}</div>
           <div className="copyright">
             Copyright © 2021
             <a href={settingsConfig.copyright_http} target="_bank">

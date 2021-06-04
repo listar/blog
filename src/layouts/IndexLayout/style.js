@@ -47,6 +47,11 @@ export const IndexStyleLayout = styled.div`
       text-indent: 30px;
       margin-top: 5px;
     }
+    .content{
+      color: #fff;
+      line-height:30px;
+          white-space: pre-line;
+    }
   }
   .nav-box {
     padding-top: 60px;
