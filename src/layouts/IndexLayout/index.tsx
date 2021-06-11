@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react';
 import { IndexStyleLayout } from './style';
 import { sayingList } from '@/pages/services/saying';
 import { poetryList } from '@/pages/services/poetry';
-import {shuffle} from 'lodash'
+import {shuffle, get} from 'lodash'
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const IndexLayout: React.FC = (props) => {
-  const { children, history, location} = props;
+  const { children, history, location, route } = props;
   const [showContent, setShowContent] = useState(location.pathname === "/" ? false : true);
   const navArr: any = {
     index: {
@@ -61,6 +62,7 @@ const IndexLayout: React.FC = (props) => {
 
   const [sayingInfo, setSayingInfo] = useState({ Content: '' });
   const [poetryInfo, setPoetryInfo] = useState({ Title: '', Content: '' });
+  const defaultTitle = 'star的博客';
 
   useEffect(()=>{
     sayingList({
@@ -77,16 +79,30 @@ const IndexLayout: React.FC = (props) => {
     })
   }, [])
 
+  const [title, setTitle] = useState(defaultTitle);
+  useEffect(() => {
+    const current = route.routes.filter(
+      (item:any) => item.path === location.pathname,
+    );
+    setTitle(current[0]?.name || defaultTitle);
+  }, [location.pathname]);
+
   return (
     <IndexStyleLayout>
+        <HelmetProvider>
+          <Helmet>
+            <title>{title}</title>
+            <meta name="description" content={title} />
+          </Helmet>
+      </HelmetProvider>
       <div
         className={'index-layer' + (showContent ? ' small' : ' all')}
         style={showContent ? {} : {}}
       >
         <div className="index-main">
           <div className="poetry">
-            <div className="title">{poetryInfo.Title}</div>
-            <div className="content">{poetryInfo.Content}</div>
+            <div className="title">{get(poetryInfo, 'Title')}</div>
+            <div className="content">{get(poetryInfo, "Content")}</div>
           </div>
           <div className="nav-box">
             {Object.keys(navArr).map((item: any) => {

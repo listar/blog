@@ -2,67 +2,89 @@ import { articleDetail } from '@/pages/services/article';
 import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
-import DetailStyle  from './style'
-require('github-markdown-css')
-import {Spin} from 'antd'
-
-export default function ArticleInfo(props:any) {
-//   const markdown = `A paragraph with *emphasis* and **strong importance**.
-
-// > A block quote with ~strikethrough~ and a URL: https://reactjs.org.
-
-// * Lists
-// * [ ] todo
-// * [x] done
-
-// A table:
-
-// | a | b |
-// | - | - |
-// | 1 | 2 |
+import DetailStyle from './style';
+require('github-markdown-css');
+import { Spin } from 'antd';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+/* Use `…/dist/cjs/…` if you’re not in ESM! */
+import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 
-// - 列表内容
-// + 列表内容
-// * 列表内容
 
-// 注意：- + * 跟内容之间都要有一个空格
+export default function ArticleInfo(props: any) {
+  //   const markdown = `A paragraph with *emphasis* and **strong importance**.
 
+  // > A block quote with ~strikethrough~ and a URL: https://reactjs.org.
 
-//   > 这是引用的内容
-//   >> 这是引用的内容
-//   >>>>>>>>>> 这是引用的内容
+  // * Lists
+  // * [ ] todo
+  // * [x] done
 
-//   # 一级标题
-//   ## 一级标题
-//   ### 一级标题
-//   #### 一级标题
+  // A table:
 
-// \`\`\`javascript
-//  console.log('hello world')
-// \`\`\`
+  // | a | b |
+  // | - | - |
+  // | 1 | 2 |
 
-// `;
-const ID = parseInt(props.match.params.id);
-const [detail, setDetail] = useState({
-  CreatedAt: '',
-  Content: ''
-});
-const [loading, setLoading] = useState(true)
+  // - 列表内容
+  // + 列表内容
+  // * 列表内容
 
-useEffect(() => {
-  articleDetail({
-    ID: ID
-  }).then(res=> {
-    console.log(res);
-    setLoading(false)
-    const tagArr = res.data.result.Tags.split(",")
-    setDetail({
-      ...res.data.result,
-      tagArr
+  // 注意：- + * 跟内容之间都要有一个空格
+
+  //   > 这是引用的内容
+  //   >> 这是引用的内容
+  //   >>>>>>>>>> 这是引用的内容
+
+  //   # 一级标题
+  //   ## 一级标题
+  //   ### 一级标题
+  //   #### 一级标题
+
+  // \`\`\`javascript
+  //  console.log('hello world')
+  // \`\`\`
+
+  // `;
+  const ID = parseInt(props.match.params.id);
+  const [detail, setDetail] = useState({
+    CreatedAt: '',
+    Content: '',
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    articleDetail({
+      ID: ID,
+    }).then((res) => {
+      // console.log(res);
+      setLoading(false);
+      const tagArr = res.data.result.Tags.split(',');
+      setDetail({
+        ...res.data.result,
+        tagArr,
+      });
+
+      document.title = res.data.result?.Title;
     });
-  })
-}, [ID]);
+  }, [ID]);
+
+  const components = {
+    code({ node, inline, className = 'language-js', children, ...props }) {
+      const match = /language-(\w+)/.exec(className);
+      return !inline && match ? (
+        <SyntaxHighlighter
+          style={solarizedlight}
+          language={match[1]}
+          PreTag="div"
+          children={String(children).replace(/\n$/, '')}
+          {...props}
+        />
+      ) : (
+        <code className={className} {...props} />
+      );
+    },
+  };
 
   return (
     <>
@@ -88,6 +110,7 @@ useEffect(() => {
             <ReactMarkdown
               remarkPlugins={[gfm]}
               children={detail.Content}
+              components={components}
             ></ReactMarkdown>
           </div>
         </DetailStyle>
