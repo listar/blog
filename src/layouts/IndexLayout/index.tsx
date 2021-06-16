@@ -62,7 +62,7 @@ const IndexLayout: React.FC = (props) => {
 
   const [sayingInfo, setSayingInfo] = useState({ Content: '' });
   const [poetryInfo, setPoetryInfo] = useState({ Title: '', Content: '' });
-  const defaultTitle = 'star的博客';
+  const defaultTitle = settingsConfig.webName;
 
   useEffect(()=>{
     sayingList({
@@ -89,11 +89,11 @@ const IndexLayout: React.FC = (props) => {
 
   return (
     <IndexStyleLayout>
-        <HelmetProvider>
-          <Helmet>
-            <title>{title}</title>
-            <meta name="description" content={title} />
-          </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <title>{title}</title>
+          <meta name="description" content={title} />
+        </Helmet>
       </HelmetProvider>
       <div
         className={'index-layer' + (showContent ? ' small' : ' all')}
@@ -102,7 +102,7 @@ const IndexLayout: React.FC = (props) => {
         <div className="index-main">
           <div className="poetry">
             <div className="title">{get(poetryInfo, 'Title')}</div>
-            <div className="content">{get(poetryInfo, "Content")}</div>
+            <div className="content">{get(poetryInfo, 'Content')}</div>
           </div>
           <div className="nav-box">
             {Object.keys(navArr).map((item: any) => {
@@ -114,7 +114,7 @@ const IndexLayout: React.FC = (props) => {
             })}
           </div>
 
-          <div className="jitang">{sayingInfo.Content}</div>
+          <div className="jitang">{get(sayingInfo, 'Content', '')}</div>
           <div className="copyright">
             Copyright © 2021
             <a href={settingsConfig.copyright_http} target="_bank">

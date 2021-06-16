@@ -5,9 +5,15 @@ import gfm from 'remark-gfm';
 import DetailStyle from './style';
 require('github-markdown-css');
 import { Spin } from 'antd';
+import {random} from 'lodash'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 /* Use `…/dist/cjs/…` if you’re not in ESM! */
-import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import {
+  solarizedlight,
+  materialDark,
+  atomDark,
+  duotoneLight,
+} from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 
 
@@ -69,14 +75,19 @@ export default function ArticleInfo(props: any) {
     });
   }, [ID]);
 
+
+  const styleArr = [solarizedlight, materialDark, atomDark, duotoneLight];
+  const currentIndex = random(0, styleArr.length - 1);
+
   const components = {
     code({ node, inline, className = 'language-js', children, ...props }) {
       const match = /language-(\w+)/.exec(className);
       return !inline && match ? (
         <SyntaxHighlighter
-          style={solarizedlight}
+          style={styleArr[currentIndex]}
           language={match[1]}
           PreTag="div"
+          showLineNumbers={true}
           children={String(children).replace(/\n$/, '')}
           {...props}
         />

@@ -21,7 +21,8 @@ export const IndexStyleLayout = styled.div`
   }
   .index-main {
     padding: 0 40px;
-    text-shadow: 0 1px 1px rgb(0, 0, 0, 0.4);
+    text-shadow: 0 1px 2px rgb(0, 0, 0, 0.6);
+    text-align: center;
   }
 
   .jitang {
@@ -39,7 +40,6 @@ export const IndexStyleLayout = styled.div`
     .title {
       color: #fff;
       font-weight: 600;
-      text-align: center;
       font-size: 18px;
     }
     p {
@@ -58,11 +58,14 @@ export const IndexStyleLayout = styled.div`
     line-height: 1em;
     display: flex;
     flex-wrap: wrap;
+        justify-content: center;
+
     a {
       margin-right: 10px;
       opacity: 0.8;
       padding: 10px 20px;
       border: 1px solid #fff;
+      box-shadow: 1px 1px 3px;
       border-radius: 20px;
       font-size: 0.9em;
       font-weight: bold;

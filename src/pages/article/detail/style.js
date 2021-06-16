@@ -22,7 +22,10 @@ export default styled.div`
     padding:15px 0;
   }
   .detail{
-    padding:20px 0
+    padding:20px 0;
+    p{
+      padding-bottom:6px;
+    }
   }
 
 th {

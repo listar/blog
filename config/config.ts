@@ -32,7 +32,7 @@ export default defineConfig({
   },
   esbuild: {},
   favicon: '/static/favicon.ico',
-  headScripts: ['https://res.wx.qq.com/open/js/jweixin-1.2.0.js'],
+  // headScripts: ['https://res.wx.qq.com/open/js/jweixin-1.2.0.js'],
 
   title: false,
   ignoreMomentLocale: true,
