@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 import DetailStyle from './style';
+import { Helmet } from 'umi';
 require('github-markdown-css');
 import { Spin } from 'antd';
-import {random} from 'lodash'
+import { random } from 'lodash';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 /* Use `…/dist/cjs/…` if you’re not in ESM! */
 import {
@@ -14,8 +15,6 @@ import {
   atomDark,
   duotoneLight,
 } from 'react-syntax-highlighter/dist/esm/styles/prism';
-
-
 
 export default function ArticleInfo(props: any) {
   //   const markdown = `A paragraph with *emphasis* and **strong importance**.
@@ -75,7 +74,6 @@ export default function ArticleInfo(props: any) {
     });
   }, [ID]);
 
-
   const styleArr = [solarizedlight, materialDark, atomDark, duotoneLight];
   const currentIndex = random(0, styleArr.length - 1);
 
@@ -103,6 +101,9 @@ export default function ArticleInfo(props: any) {
         <Spin size="large"></Spin>
       ) : (
         <DetailStyle>
+          <Helmet encodeSpecialCharacters={false}>
+            <title>{detail.Title}</title>
+          </Helmet>
           <div className="time-tags">
             <div className="time">{detail.CreatedAt.slice(0, 10)}</div>
             <div className="tags">

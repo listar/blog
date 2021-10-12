@@ -1,8 +1,8 @@
-import { defineConfig } from 'umi'
-import routes from './routes'
-import proxy from './proxy'
+import { defineConfig } from 'umi';
+import routes from './routes';
+import proxy from './proxy';
 
-const { UMI_ENV } = process.env
+const { UMI_ENV } = process.env;
 
 export default defineConfig({
   routes: routes.routes,
@@ -38,11 +38,14 @@ export default defineConfig({
   ignoreMomentLocale: true,
   proxy: proxy.dev,
   define: {
-    APIUrl: "",
+    APIUrl: '',
     // APIUrl: 'http://www.qqfav.com:10070',
     // APIUrl: 'http://localhost:10070',
   },
-  manifest: {
-    basePath: '/',
-  },
-})
+  // manifest: {
+  //   basePath: '/',
+  // },
+  ssr: {},
+  // dynamicImport: {},
+  extraBabelPlugins: ['babel-plugin-styled-components'],
+});
